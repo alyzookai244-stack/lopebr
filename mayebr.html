@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💗</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #0a0015 0%, #000000 70%);
+  font-family: Arial, sans-serif;
+}
+
+/* AURA TENGAH */
+body::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 0, 128, 0.2);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(120px);
+}
+
+/* LOVE */
+.heart {
+  position: absolute;
+  top: -10px;
+  font-size: 15px;
+  animation: fall linear infinite;
+  opacity: 0.9;
+  text-shadow: 0 0 10px #ff4da6, 0 0 20px #ff66cc;
+}
+
+/* jatuh */
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+/* COUNTDOWN */
+#countdown {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 40%;
+  font-size: 100px;
+  color: #ff4da6;
+  font-weight: bold;
+  text-shadow:
+    0 0 10px #ff4da6,
+    0 0 20px #ff66cc,
+    0 0 40px #ff99cc;
+  animation: glitch 0.4s infinite;
+}
+
+/* TEXT */
+#message {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 45%;
+  font-size: 50px;
+  color: #ff66cc;
+  display: none;
+  text-shadow:
+    0 0 10px #ff4da6,
+    0 0 20px #ff66cc,
+    0 0 40px #ff99cc;
+  animation: fade 2s ease forwards, pop 0.6s ease, glitch 0.3s infinite;
+}
+
+/* fade */
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* pop muncul */
+@keyframes pop {
+  0% { transform: scale(0.5); }
+  100% { transform: scale(1); }
+}
+
+/* glitch smooth */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="countdown">3</div>
+<div id="message">LOPYUU ALYAAA 💗</div>
+
+<script>
+
+// LOVE HUJAN NEON
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (12 + Math.random() * 28) + "px";
+
+  const colors = ["#ff4da6","#ff66cc","#ff80df","#ff99cc"];
+  heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+  heart.style.animationDuration = (2 + Math.random() * 4) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+// lebih rame brutal
+setInterval(createHeart, 40);
+
+
+// COUNTDOWN
+let count = 3;
+const cd = document.getElementById("countdown");
+
+let interval = setInterval(() => {
+  count--;
+
+  if (count > 0) {
+    cd.innerHTML = count;
+  } else {
+    clearInterval(interval);
+    cd.style.display = "none";
+    document.getElementById("message").style.display = "block";
+  }
+
+}, 1000);
+
+</script>
+
+</body>
+</html>
